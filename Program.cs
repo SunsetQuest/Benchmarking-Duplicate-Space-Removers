@@ -1,4 +1,5 @@
-﻿// Created by Ryan White to do some quick benchmarks on some different duplicate space removal methods. 
+﻿// Created by Ryan White 10/2016 to benchmarks some different duplicate whitespace removal methods. 
+// Updated 8/2020
 // https://stackoverflow.com/questions/1279859/how-to-replace-multiple-white-spaces-with-one-white-space
 
 using System;
@@ -20,13 +21,13 @@ static class Program
         List<string> inputs = new List<string>();
         List<string> outputs = new List<string>();
 
-        inputs .Add("This is   a Warm ONLY up function for\tbest   \r\n benchmark results." + seed);
+        inputs.Add("This is   a Warm ONLY up function for\tbest   \r\n benchmark results." + seed);
         outputs.Add("This is   a Warm ONLY up function for\tbest   \r\n benchmark results." + seed);
 
-        inputs .Add("Hello World,    how are   you           doing?" + seed);
+        inputs.Add("Hello World,    how are   you           doing?" + seed);
         outputs.Add("Hello World, how are you doing?" + seed);
 
-        inputs .Add("It\twas\t \tso    nice  to\t\t see you \tin 1950.  \t" + seed);
+        inputs.Add("It\twas\t \tso    nice  to\t\t see you \tin 1950.  \t" + seed);
         outputs.Add("It was so nice to see you in 1950. " + seed);
 
         inputs.Add("That car\r\nis sooooooooo     fast." + seed);
@@ -83,11 +84,9 @@ static class Program
         //Regex with non-compile Tim Hoolihan (https://stackoverflow.com/a/1279874/2352507)
         f = (x) => Regex.Replace(x, @"\s+", " ");
         TestMethod(f, sw, inputs, outputs, baseVal, "RegExNoCompile");
-
-
     }
 
-    private static Stopwatch TestMethod(Func<string,string> Method, Stopwatch sw, List<string> inputs, List<string> correctOutputs, long baseVal, string name = "")
+    private static Stopwatch TestMethod(Func<string, string> Method, Stopwatch sw, List<string> inputs, List<string> correctOutputs, long baseVal, string name = "")
     {
         int hash = 0;
         int inputsCount = inputs.Count;
